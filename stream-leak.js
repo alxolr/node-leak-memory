@@ -1,16 +1,16 @@
-const { Transform } = require('stream');
+const http = require('http');
+const server = http.createServer(handleServer);
+const { transform } = require('./lib/transform-error');
+const fs = require('fs');
 
-function transform() {
-  return new Transform({
-    transform(chunk, enc, next) {
-      const random = Math.random();
-      console.log(random);
-      if (random > 0.5) throw Error('Some error occured');
-      next(null, chunk);
-    }
-  });
+server.listen(3030);
+
+function handleServer(request, response) {
+  if (request.url === '/') {
+    const stream = fs.createReadStream('./big.file');
+    stream.pipe(transform())
+      .pipe(response);
+  }
 }
 
-module.exports = {
-  transform,
-}
+process.on('uncaughtException', console.error);
