@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/alxolr/node-leak-memory/issues"
   },
-  "homepage": "https://github.com/alxolr/node-leak-memory#readme"
+  "homepage": "https://github.com/alxolr/node-leak-memory#readme",
+  "dependencies": {
+    "pump": "^3.0.0"
+  }
 }

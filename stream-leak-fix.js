@@ -1,7 +1,10 @@
 const http = require('http');
 const server = http.createServer(handleServer);
-const path = require('path');
+const pipeline = require('pump');
 const fs = require('fs');
+const path = require('path');
+
+// const { pipeline } = require('stream');
 
 server.listen(3030);
 
@@ -16,7 +19,14 @@ function handleServer(request, response) {
       }, 0);
     }
 
-    readable.pipe(response);
+    pipeline(
+      readable,
+      response,
+      (err) => {
+        if (err) console.error(err);
+        response.end('Done');
+      }
+    )
   }
 }
 
