@@ -8,14 +8,6 @@ server.listen(3030);
 function handleServer(request, response) {
   if (request.url === '/') {
     const readable = fs.createReadStream(path.join(__dirname, './big.file'));
-
-    if (Math.random() < 0.30) {
-      setImmediate(() => {
-        response.end('Done');
-        response.destroy();
-      }, 0);
-    }
-
     readable.pipe(response);
   }
 }
