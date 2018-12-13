@@ -15,7 +15,7 @@ function handleServer(request, response) {
       response,
       (err) => {
         if (err) console.error(err);
-        response.end('Done');
+        response.end(err.message);
       }
     )
   }
