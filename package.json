@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/alxolr/node-leak-memory#readme",
   "dependencies": {
+    "heap-profile": "^0.3.2",
     "pump": "^3.0.0"
   }
 }
