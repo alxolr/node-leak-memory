@@ -4,13 +4,13 @@ const server = http.createServer(handleServer);
 server.listen(3030);
 
 function handleServer(req, res) {
-  res.end(compute(Math.random()));
+  res.end(computeTerm(Math.random()));
 }
 
-function compute(term) {
-  return compute[term] || (compute[term] = doCompute())
+function computeTerm(term) {
+  return computeTerm[term] || (computeTerm[term] = compute())
 
-  function doCompute() {
+  function compute() {
     return Buffer.alloc(1e3);
   }
 }
